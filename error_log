@@ -1,0 +1,4 @@
+[05-Aug-2016 18:18:50 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/jassyrut/public_html/wp-content/themes/rosa-child/functions.php on line 6
+[05-Aug-2016 23:54:13 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/jassyrut/public_html/wp-content/themes/rosa-child/functions.php on line 6
+[07-Aug-2016 15:53:31 UTC] PHP Fatal error:  Call to undefined function is_single() in /home/jassyrut/public_html/wp-content/themes/rosa-child/header.php on line 14
+[10-Aug-2016 13:47:36 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/jassyrut/public_html/wp-content/themes/rosa-child/functions.php on line 6

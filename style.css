@@ -1,0 +1,82 @@
+/*
+Theme Name: Rosa Child
+Theme URI: http://pixelgrade.com/demos/rosa
+Author: PixelGrade Team
+Author URI: http://pixelgrade.com
+Template: rosa
+Description:  ROSA is an enchanting and easy-to-use parallax Restaurant WordPress theme that allows you to tell your story in a dynamic, narrative and enjoyable way, making it perfect for restaurants, bakeries, bars or coffee shops.
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: rosa_txtd
+Tags: black, orange, light, one-column, two-columns, right-sidebar, flexible-width, custom-header, custom-menu, editor-style, featured-images, microformats, sticky-post, translation-ready
+*/
+
+/* Add your custom CSS rules that overwrite the ones in the main Lens theme here */
+
+.jassy_menu_page .menu-list__item-title .item_title, .jassy_menu_page .menu-list__item-title, .jassy_menu_page .desc__content, .jassy_menu_page .menu-list__item-price {
+	background-color: transparent;
+}
+
+.header--transparent .site-header {
+	background-image: none;
+}
+
+.page .article__content {
+	background-color: transparent;
+}
+
+.page .article__content {
+	position: relative;
+}
+
+.page .article__content::after {
+  content: "";
+  opacity: 0.6;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.flexbox__item.branding-container {
+  position: relative;
+  top: -18px;
+}
+
+.sidebar--footer__dark {
+  background-color: #000;
+}
+
+.rounded_image {
+  border-radius: 50%;
+}
+
+.jassy_menu_page .menu-list__item-desc {
+  font-size:13px;
+}
+
+body.single, body.single .container--single {
+  background-color: transparent;
+}
+
+.footer-widget-area .pixcode--tabs__nav a {
+  font-size: 16px
+} 
+
+.archive__side-title {
+  display: none;
+}
+
+img.alignleft {
+    padding-right: 20px;
+}
+
+img.alignright {
+    padding-left: 20px;
+}
+
+body.hide_featured_image .article__featured-image {
+  display: none;
+}
