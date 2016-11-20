@@ -89,7 +89,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 //make the header menu bar transparent
 //only for static pages
-if ( is_page() ) {
+if ( is_page() || is_product() ) {
 	$make_transparent_menu_bar = get_post_meta( get_the_ID(), wpgrade::prefix() . 'header_transparent_menu_bar', true );
 
 	if ( $make_transparent_menu_bar == 'on' ) {
