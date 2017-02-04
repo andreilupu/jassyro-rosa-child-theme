@@ -198,6 +198,7 @@ function add_customify_jassyro_options ( $config ) {
 				 'label'     => __( 'Menu Page Background', 'customify_txtd' ),
 				 'desc'      => __( 'Container background with image.', 'rosa_txtd' ),
 				 'output'    => array( '.jassy_menu_page .article__content, body.jassy_menu_page div.site-header,
+				  html body .site-header .sub-menu,
 				  body.jassy_menu_page div.site-header.header--inversed, .value select, .quantity input.input-text.qty' ),
 			 ),
 
@@ -276,7 +277,6 @@ function add_customify_jassyro_options ( $config ) {
 //							'card_title_font_size'      => '24',
 //							'card_title_text_transform' => 'None',
 //							'card_title_letter-spacing' => '0',
-
 						)
 					),
 
@@ -384,31 +384,7 @@ function add_customify_jassyro_options ( $config ) {
 
 add_filter( 'customify_filter_fields', 'add_customify_jassyro_options', 15 );
 
-
-add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
-
-function custom_pre_get_posts_query( $q ) {
-
-	if ( ! $q->is_main_query() ) return;
-	if ( ! $q->is_post_type_archive() ) return;
-
-	if ( ! is_admin() && is_shop() ) {
-
-		$q->set( 'tax_query', array(array(
-			'taxonomy' => 'product_cat',
-			'field' => 'slug',
-			'terms' => array( 'variatii' ), // Don't display products in the knives category on the shop page
-			'operator' => 'NOT IN'
-		)));
-
-	}
-
-	remove_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
-
-}
-
 // remove things from woo
-
 add_filter('wc_product_enable_dimensions_display', '__return_false', 99 );
 
 function jassyro_play_with_single_product_tabs( $tabs ) {
@@ -421,4 +397,15 @@ add_filter('woocommerce_product_tabs', 'jassyro_play_with_single_product_tabs' )
 
 function woocommerce_template_single_meta() {
 	// aha
+}
+
+/*
+* goes in theme functions.php or a custom plugin. Replace the image filename/path with your own :)
+*
+**/
+add_filter('woocommerce_placeholder_img_src', 'custom_woocommerce_placeholder_img_src');
+
+function custom_woocommerce_placeholder_img_src( $src ) {
+
+	return get_stylesheet_directory_uri() . '/assets/images/placeholder.png';
 }

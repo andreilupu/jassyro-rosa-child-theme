@@ -107,13 +107,14 @@ body.woocommerce.jassy_menu_page .summary.entry-summary, body.woocommerce.jassy_
   font-size: 18px;
 }
 
-body.woocommerce.jassy_menu_page .shop-menu-item:hover .sub-menu {
-  background-color: transparent;
+.sub-menu {
   border: 3px solid;
-  top: 80px;
+  top: 70px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-body.woocommerce.jassy_menu_page .shop-menu-item:hover .sub-menu:before {
+.sub-menu:before {
   content: '';
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);

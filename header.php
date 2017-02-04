@@ -117,7 +117,7 @@ echo ' ' . $data_smoothscrolling . ' ' . $data_main_color ?> >
 			<div class="flexbox">
 				<div class="flexbox__item">
 					<button class="nav-trigger  js-nav-trigger">
-						<span class="nav-icon icon--lines"></span>
+						<span class="nav-icon"></span>
 					</button>
 				</div>
 				<div class="flexbox__item  branding-container">
@@ -135,11 +135,7 @@ echo ' ' . $data_smoothscrolling . ' ' . $data_main_color ?> >
 						<h2 class="accessibility"><?php _e( 'Primary Navigation', 'rosa' ) ?></h2>
 
 						<?php
-
-					if ( is_front_page() ){
-						wpgrade_first_page_main_nav();
-					} else {
-							wp_nav_menu( array(
+						wp_nav_menu( array(
 							'theme_location' => 'main_menu',
 							'menu'           => '',
 							'container'      => '',
@@ -149,9 +145,6 @@ echo ' ' . $data_smoothscrolling . ' ' . $data_main_color ?> >
 							'fallback_cb'    => 'rosa_please_select_a_menu_fallback',
 							'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 						) );
-					}
-
-
 
 						$theme_locations = get_nav_menu_locations();
 						if ( isset( $theme_locations["social_menu"] ) && ( $theme_locations["social_menu"] != 0 ) ) {
@@ -166,6 +159,8 @@ echo ' ' . $data_smoothscrolling . ' ' . $data_main_color ?> >
 								'menu_id'        => '',
 								'depth'          => 1,
 								'items_wrap'     => '<ul id="%1$s" class="%2$s  nav">%3$s</ul>',
+								'link_before'    => '<span class="screen-reader-text">',
+								'link_after'     => '</span>',
 							) );
 						}
 
@@ -199,11 +194,3 @@ echo ' ' . $data_smoothscrolling . ' ' . $data_main_color ?> >
 			</div><!-- .flexbox -->
 		</div><!-- .container -->
 	</div><!-- .site-header -->
-	
-	<?php if ( is_front_page() && ! wp_is_mobile() ) { ?>
-		<div id="frontpage_video">
-			<div class="article__parallax">
-				<?php echo apply_filters('the_content', 'https://www.youtube.com/watch?v=CEgPPvyfesk&autohide=1&showinfo=0&controls=0'); ?>
-			</div>
-		</div>
-	<?php } ?>
