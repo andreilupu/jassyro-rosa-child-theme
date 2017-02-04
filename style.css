@@ -130,3 +130,14 @@ body.woocommerce.jassy_menu_page .summary.entry-summary, body.woocommerce.jassy_
   left: 66px;
   border-top-right-radius: 15px;
 }
+
+.woocommerce ul.products li.product a.product__button {
+  width:100%;
+  padding: 25px;
+  cursor: pointer;
+}
+
+.article__content img, .chalk-border {
+  border: 5px #fff !important;
+  border-style: dotted solid !important;
+}
