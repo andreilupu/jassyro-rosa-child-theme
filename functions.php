@@ -371,10 +371,18 @@ function add_customify_jassyro_options ( $config ) {
 	$config['sections']['menu_page_opts'] = $new_opts;
 
 	// hook the color
-	$config['sections']['colors_section']['options']['main_color']['css'][0]['selector'] .= '.woocommerce.jassy_menu_page .woocommerce-variation.single_variation';
+	$config['sections']['colors_section']['options']['main_color']['css'][0]['selector'] .= ' , html .jassy_menu_page .input-text , html .jassy_menu_page .article__content a, .pagination span.current, .woocommerce.jassy_menu_page .woocommerce-variation.single_variation, .site-header.headroom--not-top .site-logo--text, a.site-logo--text';
+
+	$config['sections']['colors_section']['options']['main_color']['css'][2]['selector'] .= ' , .nav-icon, .nav-icon:before, .nav-icon:after';
+
+	$config['sections']['colors_section']['options']['text_color']['css'][0]['selector'] .= ' , .woocommerce-account .woocommerce-MyAccount-navigation li:not(.is-active) a';
+
+	$config['panels']['typography_panel']['sections']['headers_typography_section']['options']['google_titles_font']['selector'] .= ', .woocommerce .woocommerce-message, #add_payment_method table.cart td, #add_payment_method table.cart th, .woocommerce-cart table.cart td, .woocommerce-cart table.cart th, .woocommerce-checkout table.cart td, .woocommerce-checkout table.cart th, .woocommerce table.shop_table th, .pagination a, .pagination span, .page-numbers.prev, .page-numbers.next, html, .wp-caption-text, .small-link, .post-nav-link__label, .author__social-link, .comment__links, .score__desc.pagination a, .pagination span, .page-numbers.prev, .page-numbers.next ';
+
+	$config['panels']['typography_panel']['sections']['content_typography_section']['options']['body-font-size']['css'][0]['selector'] .= '.jassy_menu_page .article__content a';
 
 	// hook the background-color
-	$config['sections']['colors_section']['options']['main_color']['css'][1]['selector'] .= ' .woocommerce.jassy_menu_page #respond input#submit.alt,
+	$config['sections']['colors_section']['options']['main_color']['css'][1]['selector'] .= 'body div.page-numbers.next, .woocommerce.jassy_menu_page #respond input#submit.alt,
 	 .woocommerce.jassy_menu_page a.button.alt, .woocommerce.jassy_menu_page button.button.alt, .woocommerce.jassy_menu_page input.button.alt,
 	 .woocommerce.jassy_menu_page button.button.alt.disabled, .woocommerce.jassy_menu_page button.button.alt.disabled:hover';
 
@@ -409,3 +417,32 @@ function custom_woocommerce_placeholder_img_src( $src ) {
 
 	return get_stylesheet_directory_uri() . '/assets/images/placeholder.png';
 }
+
+function wpse_131562_redirect() {
+	if ( ! is_user_logged_in() && ( is_cart() || is_checkout()) ) {
+		// feel free to customize the following line to suit your needs
+		wp_redirect( get_permalink( get_option('woocommerce_myaccount_page_id') ) );
+		exit;
+	}
+}
+add_action('template_redirect', 'wpse_131562_redirect');
+
+/**
+ * This code should be added to functions.php of your theme
+ **/
+function jassyro_custom_pre_get_posts_query( $q ) {
+
+	if ( ! $q->is_main_query() ) return;
+	if ( ! $q->is_post_type_archive() ) return;
+
+	$q->set( 'tax_query', array(array(
+		'taxonomy' => 'product_cat',
+		'field' => 'slug',
+		'terms' => array( 'variatii' ),
+		'operator' => 'NOT IN'
+	)));
+
+	remove_filter( 'pre_get_posts', 'jassyro_custom_pre_get_posts_query' );
+
+}
+add_filter( 'pre_get_posts', 'jassyro_custom_pre_get_posts_query' );
